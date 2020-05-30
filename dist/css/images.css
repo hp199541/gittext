@@ -1,0 +1,78 @@
+.wp_pop_img {
+    background: url('../images/scape.png') center / contain no-repeat;
+}
+.home {
+  background-image: url('../images/bg.jpg');
+}
+.header {
+    background-image: url('../images/title.png');
+}
+.history {
+  background-image: url('../images/history.png');
+}
+.rule {
+  background-image: url('../images/rule.png');
+}
+.diamond {
+  background-image: url('../images/diamond.png');
+}
+.pool {
+  background-image: url('../images/leftbg.png');
+}
+.pool-top {
+  background-image: url('../images/cardpool.png');
+}
+.light-frame {
+  background-image: url('../images/reward_light_bg.png');
+}
+.normal-frame {
+  background-image: url('../images/reward_bg.png');
+}
+.refresh-btn {
+  background-image: url('../images/refresh.png');
+}
+.refresh-icon {
+  background-image: url('../images/refresh_icon.png');
+}
+.skip-radio {
+  background-image: url('../images/skip_radio.png');
+}
+.skip-radio::after {
+  background-image: url('../images/skip_right.png');
+}
+.card-backend {
+  background-image: url('../images/card_back.png');
+}
+.card-frontend {
+  background-image: url('../images/card_front.png');
+}
+.card-frontend.light {
+  background-image: url('../images/card_big_front.png');
+}
+.card-item-base {
+  background-image: url('../images/base_light.png');
+}
+.card-mask-icon {
+  background-image: url('../images/claimed.png');
+}
+.toast-inner {
+  background-image: url('../images/toast.png');
+}
+.dialog-body {
+  background-image: url('../images/dialogbg.png');
+}
+.dialog-close {
+  background-image: url('../images/close.png');
+}
+.confirm-btn, .flip-btn {
+  background-image: url('../images/confirm_btn.png');
+}
+.notice-checkbox {
+  background-image: url('../images/check_box.png');
+}
+.checkbox-right {
+  background-image: url('../images/check_right.png');
+}
+.ff-claimed {
+  background-image: url('../images/claimed.png');
+}

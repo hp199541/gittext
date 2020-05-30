@@ -1,0 +1,12 @@
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+// eg: height: px2vw(20px);
+@function px2vw($px){
+  @return parseInt($px) / $ui-width * 100vw;
+}
+// eg: height: px2vh(20px);
+@function px2vh($px){
+  @return parseInt($px) / $ui-height * 100vh;
+}

@@ -1,0 +1,24 @@
+.home{
+  background-image: url('../images/bg.jpg');
+}
+.first-middle-left{
+  background-image: url('../images/freefire.png');
+}
+.first-middle-right{
+  background-image: url('../images/freefire.png');  
+}
+.inner-bg-left{
+  background-image: url('../images/logo1.png');
+}
+.inner-bg-right{
+  background-image: url('../images/logo2.png');
+}
+.join-button{
+  background-image: url('../images/join_button.png');
+}
+.first-bottom-inner{
+  background-image: url('../images/first_bottom.png');
+}
+.havemore_icon{
+  background-image: url('../images//hasmore.png');
+}

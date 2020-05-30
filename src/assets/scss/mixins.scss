@@ -1,0 +1,224 @@
+@mixin widescreen {
+  @media screen and (max-aspect-ratio: 16/9){
+    & {
+      @content;
+    }
+  }
+}
+
+@mixin pxres($prop, $values...) {
+  $max: length($values);
+  $vwValues:();
+  $vwValuesWide:();
+  $strParams:'';
+  @for $i from 1 through $max {
+    $value: nth($values, $i);
+    $strParams:quote($value);
+    @if (type-of($value) == string) or ($value == 0) or str-index($strParams,'%') {
+        $vwValues: append($vwValues,unquote($value));
+        $vwValuesWide: append($vwValuesWide,($value));
+    } @else {
+      $vwValues: append($vwValues,px2vh($value));
+      $vwValuesWide: append($vwValuesWide,px2vw($value));
+    }
+  }
+  // @debug $vwValues;
+  & {
+    #{$prop}: $vwValues;
+  }
+  @include widescreen {
+    #{$prop}: $vwValuesWide;
+  }
+}
+
+// eg: @include res-size($width: 100px, $height: 20px, $font-size: 40px);
+@mixin res-size($args...) {
+  & {
+    @each $property, $px in keywords($args) {
+      #{$property}: px2vh($px);
+    }
+  }
+  @include widescreen {
+    @each $property, $px in keywords($args) {
+      #{$property}: px2vw($px);
+    }
+  }
+}
+
+@mixin res-size-important($args...) {
+  & {
+    @each $property, $px in keywords($args) {
+      #{$property}: px2vh($px) !important;
+    }
+  }
+  @include widescreen {
+    @each $property, $px in keywords($args) {
+      #{$property}: px2vw($px) !important;
+    }
+  }
+}
+
+@mixin px2rem($prop, $values...) {
+  $max: length($values);
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: nth($values, $i);
+
+    @if (type-of($value) == string) or ($value == 0) {
+      $remValues: #{$remValues + $value};
+    } @else {
+      $remValues: #{$remValues + parseInt($value) / 100}rem;
+    }
+
+    @if $i < $max {
+      $remValues: #{$remValues + ' '};
+    }
+  }
+  #{$prop}: $remValues;
+}
+
+@mixin _px2vh($prop, $values...) {
+  $max: length($values);
+  $vhValues: '';
+
+  @for $i from 1 through $max {
+    $value: nth($values, $i);
+
+    @if (type-of($value) == string) or ($value == 0) {
+      $vhValues: #{$vhValues + $value};
+    } @else {
+      $vhValues: #{$vhValues + parseInt($value) / $ui-height * 100}vh;
+    }
+
+    @if $i < $max {
+      $vhValues: #{$vhValues + ' '};
+    }
+  }
+  #{$prop}: $vhValues;
+}
+
+@mixin _px2vw($prop, $values...) {
+  $max: length($values);
+  $vwValues: '';
+
+  @for $i from 1 through $max {
+    $value: nth($values, $i);
+
+    @if (type-of($value) == string) or ($value == 0) {
+      $vwValues: #{$vwValues + $value};
+    } @else {
+      $vwValues: #{$vwValues + parseInt($value) / ($ui-width / 100)}vw;
+    }
+
+    @if $i < $max {
+      $vwValues: #{$vwValues + ' '};
+    }
+  }
+  #{$prop}: $vwValues;
+}
+
+// eg: @include px2res(margin, -10px, 'auto', -20px);
+@mixin px2res($prop, $values...) {
+  @include _px2vh($prop, $values...);
+  @include widescreen {
+    @include _px2vw($prop, $values...);
+  }
+}
+
+@mixin keyframes($animationName){
+  @-webkit-keyframes #{$animationName} {
+      @content;
+  }
+  @-moz-keyframes #{$animationName} {
+      @content;
+  }
+  @-o-keyframes #{$animationName} {
+      @content;
+  }
+  @keyframes #{$animationName} {
+      @content;
+  }
+}
+
+@mixin animation($name, $time:1s,$ease:ease-out,$fillmode:backwards){
+  animation:$name $time $ease $fillmode;
+  -moz-animation:$name $time $ease $fillmode;
+  -webkit-animation:$name $time $ease $fillmode;
+  -o-animation:$name $time $ease $fillmode;
+}
+
+@mixin ellipsis-line($line){
+	overflow : hidden;
+	text-overflow: ellipsis;
+  word-break: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: $line; /* 行数*/
+	/* autoprefixer: off */
+  -webkit-box-orient:vertical;
+  // -webkit-box-pack: center;
+  // -webkit-box-align: center;
+	/*! autoprefixer: on */
+}
+
+@mixin ellipsis-line-middle($line,$aligin){
+  overflow: hidden;
+  -webkit-line-clamp: $line;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+   text-overflow:ellipsis;
+   display: -webkit-box;
+   -webkit-box-pack: center;
+  //  center居中 start居左
+   -webkit-box-align: $aligin;
+   word-break: break-word;
+   	/*! autoprefixer: on */
+}
+
+// 背景图片渲染
+@mixin bgc {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+// 横排
+@mixin flexrc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 竖排
+@mixin flexcc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 文本省略
+@mixin textellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// 扩大可点击区域
+@mixin extend-click {
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
+}
+
+// 渐变文字
+@mixin text-gradient($values...) {
+  background-image: linear-gradient($values);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
