@@ -1,5 +1,5 @@
 <template>
-    <div class="second">2222
+    <div class="second">2222hp-dev
         <button @click="getNews">getNews</button>
     </div>
 </template>
