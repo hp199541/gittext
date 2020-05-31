@@ -2,7 +2,7 @@
   <div class="home-page">
     <section class="home">
     <p class="first-top">
-      <span>CASH GAME</span>
+      <span>{{transify['COMMON_CONTINUE_PURCHASE']}}</span>
     </p>
     <div class="first-middle">
       <div class="first-middle-left">
@@ -26,6 +26,8 @@
     </div>
   </section>
     <Second />
+    <Third />
+    <Fourth />
   </div>
 </template>
 <script>
@@ -37,6 +39,8 @@ import {
   errorGA
 } from "@/utils/assist";
 import Second from '../../components/second';
+import Third from '../../components/third';
+import Fourth from '../../components/fourth';
  export default {
   name: "home",
   data() {
@@ -44,7 +48,13 @@ import Second from '../../components/second';
       globalConfig: this.$bus.$data, // 全局被观测数据对象
     };
   },
-  components: {Second},
+  created() {
+    this.$api.info()
+    .then(data => {
+      console.log(data.data.transify)
+    })
+  },
+  components: {Second,Third,Fourth},
   methods: {
     // initInfo() {
     // let accessToken = getSessionStorage(`${PROJECT_NAME}AccessToken`) || ''
@@ -67,6 +77,9 @@ import Second from '../../components/second';
     // this.initInfo();
     // var date = new Date()
     // console.log(date)
+     transify() {
+			return this.globalConfig.transify
+		},
     date :() => {
       let date = new Date()
       let year = date.getFullYear()

@@ -230,4 +230,21 @@ a {
 .second{
     width: 100vw;
     height: 50vh;
+    background-size: 100% 1005;
+}
+.third{
+    width: 100vw;
+    height: 90vh;
+}
+.fourth{
+    width: 100vw;
+    height: 90vh;
+    .gamerules_title{
+        @include res-size($height:60px,$width:250px,$font-size:40px,$line-height:60px);
+        text-align: center;
+        margin: 0 auto;
+        background-image: -webkit-gradient(linear, left 0, right 0, from(rgb(223, 106, 10)), to(rgb(243, 239, 3)));
+            -webkit-background-clip: text; /*必需加前缀 -webkit- 才支持这个text值 */
+            -webkit-text-fill-color: transparent; /*text-fill-color会覆盖color所定义的字体颜色： */
+    }
 }

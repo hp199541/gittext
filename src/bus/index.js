@@ -13,6 +13,7 @@ export default new Vue({
         text: ''
       },
       transify: {
+        RULES:'RULES',
         COMMON_BACK: 'back',
         COMMON_CANCEL: 'cancel',
         COMMON_CONFIRM: 'confirm',
