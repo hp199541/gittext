@@ -1,11 +1,6 @@
 <template>
-<<<<<<< HEAD
     <div class="second">
         <button style="color:white">{{time}}</button>
-=======
-    <div class="second">2222hp-dev
-        <button @click="getNews">getNews</button>
->>>>>>> 61c5eb64e01a0a2df444d0899396e9c4c12b5f00
     </div>
 </template>
 <script>
